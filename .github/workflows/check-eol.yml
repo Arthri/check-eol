@@ -1,5 +1,5 @@
-name: New Reusable Workflow
-run-name: New Reusable Workflow
+name: Check End of Line Sequence
+run-name: Check End of Line Sequence
 
 on:
   workflow_call:
