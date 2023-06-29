@@ -8,5 +8,5 @@ on:
     branches: [ master, dev ]
 
 jobs:
-  reusable-workflow:
+  check-eol:
     uses: ./.github/workflows/check-eol.yml

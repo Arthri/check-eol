@@ -19,7 +19,7 @@ defaults:
     shell: bash
 
 jobs:
-  reusable-workflow:
+  check-eol:
     runs-on: ubuntu-22.04
     timeout-minutes: 1
 
