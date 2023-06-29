@@ -6,4 +6,4 @@ on:
 
 jobs:
   reusable-workflow:
-    uses: ./.github/workflows/reusable-workflow.yml
+    uses: ./.github/workflows/check-eol.yml
