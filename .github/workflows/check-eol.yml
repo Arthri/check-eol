@@ -3,6 +3,12 @@ run-name: Check End-of-Line Sequence
 
 on:
   workflow_call:
+    inputs:
+      default-eol:
+        default: lf
+        description: Specifies te default end-of-line sequence. The supported values are "lf"(default), "crlf", and "mixed".
+        required: false
+        type: string
 
 defaults:
   run:
@@ -20,7 +26,7 @@ jobs:
 
           git ls-files --eol | while read line; do
             if [[ $line =~ ^i/([^ ]+)\ +w/([^ ]+)\ +attr/([^[:space:]]+( eol=([[:alpha:]]+))?)\ +$'\t'(.+)$ ]]; then
-              expected_eol=${BASH_REMATCH[5]:?lf}
+              expected_eol=${BASH_REMATCH[5]:?${{ inputs.default-eol }}}
               if [ "${BASH_REMATCH[1]}" != "$expected_eol" ] ; then
                 echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in index(${BASH_REMATCH[1]}) does not match expected end-of-line sequence $expected_eol."
                 exit_code=1
