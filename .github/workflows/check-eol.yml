@@ -14,7 +14,8 @@ jobs:
     timeout-minutes: 1
 
     steps:
-      - run: |
+      - name: Check End-of-Line Sequence
+        run: |
           exit_code=0
 
           git ls-files --eol | while read line; do
