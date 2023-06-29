@@ -33,7 +33,7 @@ jobs:
         run: |
           exit_code=0
 
-          git ls-files --eol | while read line; do
+          while read line; do
             if [[ $line =~ ^i/([^ ]+)\ +w/([^ ]+)\ +attr/([^[:space:]]+( eol=([[:alpha:]]+))?)\ +$'\t'(.+)$ ]]; then
               expected_eol=${BASH_REMATCH[5]:?${{ inputs.default-eol }}}
               if [ "${BASH_REMATCH[1]}" != "$expected_eol" ] ; then
@@ -47,6 +47,6 @@ jobs:
               echo 'Unable to match '"$line"
               exit_code=1
             fi
-          done
+          done < <(git ls-files --eol)
 
           exit $exit_code
