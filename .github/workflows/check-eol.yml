@@ -35,12 +35,14 @@ jobs:
 
           while read line; do
             if [[ $line =~ ^i/([^ ]*)\ +w/([^ ]*)\ +attr/([^[:space:]]+( eol=([[:alpha:]]+))?)?\ +$'\t'(.+)$ ]]; then
+              index_eol=${BASH_REMATCH[1]}
+              working_tree_eol=${BASH_REMATCH[2]}
               expected_eol=${BASH_REMATCH[5]:?${{ inputs.default-eol }}}
-              if [ "${BASH_REMATCH[1]}" != "$expected_eol" ] ; then
-                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in index(${BASH_REMATCH[1]}) does not match expected end-of-line sequence $expected_eol."
+              if { [ "$index_eol" == "lf" ] || [ "$index_eol" == "crlf" ] || [ "$index_eol" == "mixed" ] ; } && [ "$index_eol" != "$expected_eol" ] ; then
+                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in index($index_eol) does not match expected end-of-line sequence $expected_eol."
                 exit_code=1
-              elif [ "${BASH_REMATCH[2]}" != "$expected_eol" ] ; then
-                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in working tree(${BASH_REMATCH[2]}) does not match expected end-of-line sequence $expected_eol."
+              if { [ "$working_tree_eol" == "lf" ] || [ "$working_tree_eol" == "crlf" ] || [ "$working_tree_eol" == "mixed" ] ; } && [ "$working_tree_eol" != "$expected_eol" ] ; then
+                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in working tree($working_tree_eol) does not match expected end-of-line sequence $expected_eol."
                 exit_code=1
               fi
             else
