@@ -33,7 +33,7 @@ jobs:
         run: |
           exit_code=0
 
-          while read line; do
+          while IFS= read line; do
             if [[ $line =~ ^i/([^ ]*)\ +w/([^ ]*)\ +attr/([^[:space:]]+( eol=([[:alpha:]]+))?)?\ +$'\t'(.+)$ ]] ; then
               index_eol=${BASH_REMATCH[1]}
               working_tree_eol=${BASH_REMATCH[2]}
