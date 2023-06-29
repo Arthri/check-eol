@@ -12,8 +12,14 @@ A list of steps for testing the workflow's features.
     - `crlf-crlf.txt` - A file containing one CRLF.
     - `crlf-mixed.txt` - A file containing one LF and one CRLF.
 1. Create or copy a binary file, such as an image or an archive.
-1. Ensure that `autocrlf` and other git mechanisms aren't interfering with the end-of-line sequences.
-1. Push to GitHub.
+1. Run the command `git config core.autocrlf false`
+1. Create a file named `.gitattributes` with the following contents,
+    ```ini
+    lf-*.txt text eol=lf
+    crlf-*.txt text eol=crlf
+    ```
+1. All other files created such as `.gitattributes` and workflow files must be using the LF end-of-line sequence.
+1. Commit and push to GitHub.
 
 ### Outputs
 1. Workflow triggers.
@@ -26,19 +32,18 @@ A list of steps for testing the workflow's features.
 1. The workflow should not flag the following files,
     - `lf-lf.txt`.
     - `crlf-crlf.txt`.
+    - The binary file.
 
 ## Action respects `.gitattributes`
 
 ### Steps
-1. Create a file named `.gitattributes` with the following contents,
+1. Replace the contents of the file named `.gitattributes` with the following,
     ```ini
-    lf-lf.txt text eol=lf
-    lf-crlf.txt text eol=crlf
-    crlf-lf.txt text eol=lf
-    crlf-crlf.txt text eol=crlf
+    *-lf.txt text eol=lf
+    *-crlf.txt text eol=crlf
     ```
 1. Remove the files ending in `mixed`.
-1. Push to GitHub.
+1. Commit and push to GitHub.
 
 ### Outputs
 1. Workflow triggers.
@@ -47,7 +52,11 @@ A list of steps for testing the workflow's features.
 ## Action succeeds when non-compliant files are fixed
 
 ### Steps
-1. Remove the `.gitattributes` file.
+1. Replace the contents of the file named `.gitattributes` with the following,
+    ```ini
+    lf-*.txt text eol=lf
+    crlf-*.txt text eol=crlf
+    ```
 1. Restore the files ending in `mixed`.
 1. Replace all non-LF end-of-line sequences with LF in files starting with `lf-*`.
 1. Replace all non-CRLF end-of-line sequences with CRLF in files starting with `crlf-*`.
