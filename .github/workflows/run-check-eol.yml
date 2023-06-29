@@ -2,7 +2,10 @@ name: Check End of Line Sequence
 run-name: Check End of Line Sequence
 
 on:
-  repository_dispatch:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
 
 jobs:
   reusable-workflow:
