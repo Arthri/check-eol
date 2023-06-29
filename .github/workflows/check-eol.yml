@@ -1,5 +1,5 @@
-name: Check End of Line Sequence
-run-name: Check End of Line Sequence
+name: Check End-of-Line Sequence
+run-name: Check End-of-Line Sequence
 
 on:
   workflow_call:
@@ -22,10 +22,10 @@ jobs:
             if [[ $line =~ ^i/([^ ]+)\ +w/([^ ]+)\ +attr/([^[:space:]]+( eol=([[:alpha:]]+))?)\ +$'\t'(.+)$ ]]; then
               expected_eol=${BASH_REMATCH[5]:?lf}
               if [ "${BASH_REMATCH[1]}" != "$expected_eol" ] ; then
-                echo "${BASH_REMATCH[6]}:"$'\t'"End of line sequence in index(${BASH_REMATCH[1]}) does not match expected end of line sequence $expected_eol."
+                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in index(${BASH_REMATCH[1]}) does not match expected end-of-line sequence $expected_eol."
                 exit_code=1
               elif [ "${BASH_REMATCH[2]}" != "$expected_eol" ] ; then
-                echo "${BASH_REMATCH[6]}:"$'\t'"End of line sequence in working tree(${BASH_REMATCH[2]}) does not match expected end of line sequence $expected_eol."
+                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in working tree(${BASH_REMATCH[2]}) does not match expected end-of-line sequence $expected_eol."
                 exit_code=1
               fi
             else
