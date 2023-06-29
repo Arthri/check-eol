@@ -6,7 +6,7 @@ on:
     inputs:
       default-eol:
         default: lf
-        description: Specifies te default end-of-line sequence. The supported values are "lf"(default), "crlf", and "mixed".
+        description: Specifies the default end-of-line sequence. The supported values are "lf"(default), "crlf", and "mixed".
         required: false
         type: string
 
