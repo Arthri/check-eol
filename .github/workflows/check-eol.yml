@@ -1,0 +1,54 @@
+name: Check End-of-Line Sequence
+run-name: Check End-of-Line Sequence
+
+on:
+  workflow_call:
+    inputs:
+      checkout-ref:
+        description: Specifies the commitish to checkout. Defaults to $GITHUB_SHA. For more information, see <https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows>.
+        required: false
+        type: string
+      default-eol:
+        default: lf
+        description: Specifies the default end-of-line sequence. The supported values are "lf"(default), "crlf", and "mixed".
+        required: false
+        type: string
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check-eol:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 1
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.checkout-ref }}
+
+      - name: Check End-of-Line Sequence
+        run: |
+          exit_code=0
+
+          while IFS= read line; do
+            if [[ $line =~ ^i/([^ ]*)\ +w/([^ ]*)\ +attr/([^[:space:]]+( eol=([[:alpha:]]+))?)?\ +$'\t'(.+)$ ]] ; then
+              index_eol=${BASH_REMATCH[1]}
+              working_tree_eol=${BASH_REMATCH[2]}
+              expected_eol=${BASH_REMATCH[5]:-${{ inputs.default-eol }}}
+              if { [ "$index_eol" == "lf" ] || [ "$index_eol" == "crlf" ] || [ "$index_eol" == "mixed" ] ; } && [ "$index_eol" != "$expected_eol" ] ; then
+                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in index($index_eol) does not match expected end-of-line sequence $expected_eol."
+                exit_code=1
+              elif { [ "$working_tree_eol" == "lf" ] || [ "$working_tree_eol" == "crlf" ] || [ "$working_tree_eol" == "mixed" ] ; } && [ "$working_tree_eol" != "$expected_eol" ] ; then
+                echo "${BASH_REMATCH[6]}:"$'\t'"End-of-line sequence in working tree($working_tree_eol) does not match expected end-of-line sequence $expected_eol."
+                exit_code=1
+              fi
+            else
+              echo 'Unable to match '"$line"
+              exit_code=1
+            fi
+          done < <(git ls-files --eol)
+
+          exit $exit_code

@@ -1,9 +1,0 @@
-name: New Reusable Workflow
-run-name: New Reusable Workflow
-
-on:
-  repository_dispatch:
-
-jobs:
-  reusable-workflow:
-    uses: ./.github/workflows/reusable-workflow.yml
