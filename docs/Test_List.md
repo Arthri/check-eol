@@ -11,6 +11,7 @@ A list of steps for testing the workflow's features.
     - `crlf-lf.txt` - A file containing one LF.
     - `crlf-crlf.txt` - A file containing one CRLF.
     - `crlf-mixed.txt` - A file containing one LF and one CRLF.
+1. Create or copy a binary file, such as an image or an archive.
 1. Ensure that `autocrlf` and other git mechanisms aren't interfering with the end-of-line sequences.
 1. Push to GitHub.
 
