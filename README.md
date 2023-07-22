@@ -21,7 +21,7 @@ jobs:
 ## Usage
 
 ### Default End-of-Line Sequence
-The workflow uses `LF` as the fallback end-of-line sequence. The default end-of-line sequence can be configured either through [`.gitattributes`](https://www.git-scm.com/docs/gitattributes) or through the parameter `default-eol`. The following example sets the fallback end-of-line sequence to `CRLF`.
+The workflow enforces `LF` for all files in the index. `autocrlf=true` modifies files in the working tree rather than the index and thus does not affect the workflow. The following example configures the workflow to enforce `CRLF` instead.
 ```yml
 jobs:
   check-eol:
