@@ -30,13 +30,15 @@ jobs:
           ref: ${{ inputs.checkout-ref }}
 
       - name: Check End-of-Line Sequence
+        env:
+          DEFAULT_EOL: ${{ inputs.default-eol }}
         run: |
           exit_code=0
 
           while IFS= read line; do
             if [[ $line =~ ^i/([^ ]*)\ +w/[^ ]*\ +attr/[^$'\t']+$'\t'(.+)$ ]] ; then
               index_eol=${BASH_REMATCH[1]}
-              if [ "$index_eol" != "lf" ] ; then
+              if [ "$index_eol" != $DEFAULT_EOL ] ; then
                 echo "${BASH_REMATCH[2]}:"$'\t'"End-of-line sequence in index($index_eol) must be LF."
                 exit_code=1
               fi
