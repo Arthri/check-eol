@@ -4,8 +4,8 @@ A reusable workflow for linting end-of-line sequences. This workflow is a wrappe
 ## Installation
 Add a new workflow under `.github/workflows/` with the following contents.
 ```yml
-name: Check End-of-Line Sequence
-run-name: Check End-of-Line Sequence
+name: Check End-of-Line Sequences
+run-name: Check End-of-Line Sequences
 
 on:
   push:
