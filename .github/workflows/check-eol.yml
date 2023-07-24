@@ -1,5 +1,5 @@
-name: Check End-of-Line Sequence
-run-name: Check End-of-Line Sequence
+name: Check End-of-Line Sequences
+run-name: Check End-of-Line Sequences
 
 on:
   workflow_call:
@@ -29,23 +29,7 @@ jobs:
         with:
           ref: ${{ inputs.checkout-ref }}
 
-      - name: Check End-of-Line Sequence
-        env:
-          DEFAULT_EOL: ${{ inputs.default-eol }}
-        run: |
-          exit_code=0
-
-          while IFS= read line; do
-            if [[ $line =~ ^i/([^ ]*)\ +w/[^\ ]*\ +attr/[^$'\t']+$'\t'(.+)$ ]] ; then
-              index_eol=${BASH_REMATCH[1]}
-              if [ "$index_eol" != $DEFAULT_EOL ] ; then
-                echo "${BASH_REMATCH[2]}:"$'\t'"End-of-line sequence in index($index_eol) must be LF."
-                exit_code=1
-              fi
-            else
-              echo 'Unable to match '"$line"
-              exit_code=1
-            fi
-          done < <(git ls-files --eol)
-
-          exit $exit_code
+      - name: Check End-of-Line Sequences
+        uses: Arthri/check-eol-composite@v1
+        with:
+          default-eol: ${{ inputs.default-eol }}

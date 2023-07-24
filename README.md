@@ -1,11 +1,11 @@
-# reusable-workflow
-A linter for end-of-line sequences based on .gitattributes. 
+# check-eol
+A reusable workflow for linting end-of-line sequences. This workflow is a wrapper for [check-eol-composite](https://github.com/Arthri/check-eol-composite).
 
 ## Installation
 Add a new workflow under `.github/workflows/` with the following contents.
 ```yml
-name: Check End-of-Line Sequence
-run-name: Check End-of-Line Sequence
+name: Check End-of-Line Sequences
+run-name: Check End-of-Line Sequences
 
 on:
   push:
@@ -19,16 +19,7 @@ jobs:
 ```
 
 ## Usage
-
-### Default End-of-Line Sequence
-The workflow enforces `LF` for all files in the index. `autocrlf=true` modifies files in the working tree rather than the index and thus does not affect the workflow. The following example configures the workflow to enforce `CRLF` instead.
-```yml
-jobs:
-  check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
-    with:
-      default-eol: crlf
-```
+Some configuration options are documented at https://github.com/Arthri/check-eol-composite#readme.
 
 ### Checkout Ref
 `$GITHUB_SHA` is used by [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
