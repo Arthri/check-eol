@@ -19,16 +19,7 @@ jobs:
 ```
 
 ## Usage
-
-### Default End-of-Line Sequence
-The workflow enforces `LF` for all files in the index. `autocrlf=true` modifies files in the working tree rather than the index and thus does not affect the workflow. The following example configures the workflow to enforce `CRLF` instead.
-```yml
-jobs:
-  check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
-    with:
-      default-eol: crlf
-```
+Some configuration options are documented at https://github.com/Arthri/check-eol-composite#readme.
 
 ### Checkout Ref
 `$GITHUB_SHA` is used by [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
