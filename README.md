@@ -1,5 +1,5 @@
-# reusable-workflow
-A linter for end-of-line sequences based on .gitattributes. 
+# check-eol
+A reusable workflow for linting end-of-line sequences. This workflow is a wrapper for [check-eol-composite](https://github.com/Arthri/check-eol-composite).
 
 ## Installation
 Add a new workflow under `.github/workflows/` with the following contents.
