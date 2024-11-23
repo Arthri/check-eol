@@ -22,7 +22,7 @@ jobs:
 Some configuration options are documented at https://github.com/Arthri/check-eol-composite#readme.
 
 ### Checkout Ref
-`$GITHUB_SHA` is used by [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
+`$GITHUB_SHA` is used by [`actions/checkout@v4`](https://github.com/actions/checkout/tree/v4) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
 ```yml
 jobs:
   check-eol:
