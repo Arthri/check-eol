@@ -53,14 +53,14 @@ jobs:
         default-eol: crlf
 ```
 
-### Checkout Ref
+### Checkout Reference
 `$GITHUB_SHA` is used by [`actions/checkout@v4`](https://github.com/actions/checkout/tree/v4) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
 ```yml
 jobs:
   check-eol:
     uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
     with:
-      checkout-ref: dev
+      ref: dev
 ```
 
 ### Events Supported
