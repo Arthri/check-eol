@@ -1,5 +1,4 @@
-name: Check End-of-Line Sequences
-run-name: Check End-of-Line Sequences
+name: Check Line Endings
 
 on:
   push:
@@ -9,4 +8,4 @@ on:
 
 jobs:
   check-eol:
-    uses: ./.github/workflows/check-eol.yml
+    uses: ./.github/workflows/i.yml

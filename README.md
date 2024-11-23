@@ -1,11 +1,12 @@
 # check-eol
-A reusable workflow for linting end-of-line sequences. This workflow is a wrapper for [check-eol-composite](https://github.com/Arthri/check-eol-composite).
+A reusable workflow and composite action for linting line endings.
 
 ## Installation
-Add a new workflow under `.github/workflows/` with the following contents.
+
+## Reusable Workflow
+Add a new workflow under `.github/workflows/` with the following contents,
 ```yml
-name: Check End-of-Line Sequences
-run-name: Check End-of-Line Sequences
+name: Check Line Endings
 
 on:
   push:
@@ -15,21 +16,51 @@ on:
 
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
+    uses: Arthri/check-eol/.github/workflows/i.yml@v2
+```
+
+## Composite Action
+Add the following step to the desired jobs.
+```yml
+jobs:
+  job:
+    - name: Check Line Endings
+      uses: Arthri/check-eol-composite@v2
 ```
 
 ## Usage
-Some configuration options are documented at https://github.com/Arthri/check-eol-composite#readme.
 
-### Checkout Ref
-`$GITHUB_SHA` is used by [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
+### Default Line Ending
+The workflow enforces `LF` for all files in the index. The workflow and action operate agnostic of `autocrlf=true`, as the config option modifies files in the working tree rather than the index.
+
+The following example configures the reusable workflow to enforce `CRLF` instead.
 ```yml
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
+    uses: Arthri/check-eol/.github/workflows/i.yml@v2
     with:
-      checkout-ref: dev
+      default-eol: crlf
 ```
 
-### More Events
+And the following demonstrates the equivalent for composite actions.
+```yml
+jobs:
+  job:
+    - name: Check Line Endings
+      uses: Arthri/check-eol-composite@v2
+      with:
+        default-eol: crlf
+```
+
+### Checkout Reference
+The reusable workflow, by default, checkouts the ref of the branch or tag that triggered the workflow. An example is provided below demonstrating how to change the checkout `dev` instead. For more information about the default ref, see `github.ref` in [Accessing contextual information about workflow runs](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context).
+```yml
+jobs:
+  check-eol:
+    uses: Arthri/check-eol/.github/workflows/i.yml@v2
+    with:
+      ref: dev
+```
+
+### Events Supported
 The reusable workflow is not limited to pushes and pull requests, other types of events such as releases are also supported.
