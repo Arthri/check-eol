@@ -31,5 +31,5 @@ jobs:
       checkout-ref: dev
 ```
 
-### More Events
+### Events Supported
 The reusable workflow is not limited to pushes and pull requests, other types of events such as releases are also supported.
