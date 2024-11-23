@@ -1,4 +1,4 @@
-name: Check End-of-Line Sequences
+name: Check Line Endings
 
 on:
   workflow_call:
@@ -9,7 +9,7 @@ on:
         type: string
       default-eol:
         default: lf
-        description: Specifies the default end-of-line sequence. The supported values are "lf"(default), "crlf", and "mixed".
+        description: Specifies the default line ending. The supported values are "lf"(default), "crlf", and "mixed".
         required: false
         type: string
 
@@ -28,7 +28,7 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
 
-      - name: Check End-of-Line Sequences
+      - name: Check Line Endings
         env:
           DEFAULT_EOL: ${{ inputs.default-eol }}
         run: |

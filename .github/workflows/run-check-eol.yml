@@ -1,4 +1,4 @@
-name: Check End-of-Line Sequences
+name: Check Line Endings
 
 on:
   push:

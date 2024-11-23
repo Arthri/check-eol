@@ -1,17 +1,17 @@
 author: Arthri
-name: Check End-of-Line Sequences
-description: "Lints text files' end-of-line sequences."
+name: Check Line Endings
+description: "Lints text files' line endings."
 
 inputs:
   default-eol:
     default: lf
-    description: Specifies the default end-of-line sequence. The supported values are "lf"(default), "crlf", and "mixed".
+    description: Specifies the default line ending. The supported values are "lf"(default), "crlf", and "mixed".
     required: false
 
 runs:
   using: composite
   steps:
-    - name: Check End-of-Line Sequences
+    - name: Check Line Endings
       shell: bash
       env:
         DEFAULT_EOL: ${{ inputs.default-eol }}

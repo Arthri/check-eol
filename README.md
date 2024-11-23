@@ -1,12 +1,12 @@
 # check-eol
-A reusable workflow and composite action for linting end-of-line sequences.
+A reusable workflow and composite action for linting line endings.
 
 ## Installation
 
 ## Reusable Workflow
 Add a new workflow under `.github/workflows/` with the following contents,
 ```yml
-name: Check End-of-Line Sequences
+name: Check Line Endings
 
 on:
   push:
@@ -24,13 +24,13 @@ Add the following step to the desired jobs.
 ```yml
 jobs:
   job:
-    - name: Check End-of-Line Sequences
+    - name: Check Line Endings
       uses: Arthri/check-eol-composite@v2
 ```
 
 ## Usage
 
-### Default End-of-Line Sequence
+### Default Line Ending
 The workflow enforces `LF` for all files in the index. The workflow and action operate agnostic of `autocrlf=true`, as the config option modifies files in the working tree rather than the index.
 
 The following example configures the reusable workflow to enforce `CRLF` instead.
@@ -46,7 +46,7 @@ And the following demonstrates the equivalent for composite actions.
 ```yml
 jobs:
   job:
-    - name: Check End-of-Line Sequences
+    - name: Check Line Endings
       uses: Arthri/check-eol-composite@v2
       with:
         default-eol: crlf
