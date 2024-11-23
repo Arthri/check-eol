@@ -29,6 +29,6 @@ runs:
             echo '::error::Unable to match '"$line"
             exit_code=1
           fi
-        done < <(git ls-files --with-tree=FETCH_HEAD --eol)
+        done < <(git ls-files --eol)
 
         exit $exit_code
