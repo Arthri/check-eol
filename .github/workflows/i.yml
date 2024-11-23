@@ -23,13 +23,10 @@ jobs:
     timeout-minutes: 1
 
     steps:
-      - name: Setup Repository
-        env:
-          REF: ${{ inputs.ref || github.sha }}
-        run: |
-          git -c init.defaultBranch=default-branch init
-          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
-          git fetch --depth 1 origin "$REF"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
 
       - name: Check End-of-Line Sequences
         env:
