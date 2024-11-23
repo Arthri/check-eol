@@ -38,7 +38,7 @@ jobs:
             if [[ $line =~ ^i/([^ ]*)\ +w/[^\ ]*\ +attr/[^$'\t']+$'\t'(.+)$ ]] ; then
               index_eol=${BASH_REMATCH[1]}
               if [[ $index_eol != $DEFAULT_EOL && $index_eol != 'none' && $index_eol != '-text' && -n $index_eol ]] ; then
-                echo "::error file=${BASH_REMATCH[2]}::End-of-line sequence in index($index_eol) must be $DEFAULT_EOL."
+                echo "::error file=${BASH_REMATCH[2]}::${BASH_REMATCH[2]}: End-of-line sequence in index ($index_eol) must be $DEFAULT_EOL."
                 exit_code=1
               fi
             else
