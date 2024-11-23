@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Setup Repository
         env:
-          REF: ${{ inputs.ref || github.ref }}
+          REF: ${{ inputs.ref || github.sha }}
         run: |
           git -c init.defaultBranch=default-branch init
           git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
