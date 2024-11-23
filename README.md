@@ -17,7 +17,7 @@ on:
 
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
+    uses: Arthri/check-eol/.github/workflows/i.yml@v2
 ```
 
 ## Composite Action
@@ -38,7 +38,7 @@ The following example configures the reusable workflow to enforce `CRLF` instead
 ```yml
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
+    uses: Arthri/check-eol/.github/workflows/i.yml@v2
     with:
       default-eol: crlf
 ```
@@ -58,7 +58,7 @@ The reusable workflow, by default, checkouts the ref of the branch or tag that t
 ```yml
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
+    uses: Arthri/check-eol/.github/workflows/i.yml@v2
     with:
       ref: dev
 ```
