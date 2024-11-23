@@ -17,7 +17,7 @@ on:
 
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
+    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
 ```
 
 ## Composite Action
@@ -26,7 +26,7 @@ Add the following step to the desired jobs.
 jobs:
   job:
     - name: Check End-of-Line Sequences
-      uses: Arthri/check-eol-composite@v1
+      uses: Arthri/check-eol-composite@v2
 ```
 
 ## Usage
@@ -38,7 +38,7 @@ The following example configures the reusable workflow to enforce `CRLF` instead
 ```yml
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
+    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
     with:
       default-eol: crlf
 ```
@@ -48,7 +48,7 @@ And the following demonstrates the equivalent for composite actions.
 jobs:
   job:
     - name: Check End-of-Line Sequences
-      uses: Arthri/check-eol-composite@v1
+      uses: Arthri/check-eol-composite@v2
       with:
         default-eol: crlf
 ```
@@ -58,7 +58,7 @@ jobs:
 ```yml
 jobs:
   check-eol:
-    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v1
+    uses: Arthri/check-eol/.github/workflows/check-eol.yml@v2
     with:
       checkout-ref: dev
 ```
