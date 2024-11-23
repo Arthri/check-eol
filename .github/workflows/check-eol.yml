@@ -4,7 +4,7 @@ run-name: Check End-of-Line Sequences
 on:
   workflow_call:
     inputs:
-      checkout-ref:
+      ref:
         description: Specifies the commitish to checkout. Defaults to $GITHUB_SHA. For more information, see <https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows>.
         required: false
         type: string
@@ -27,7 +27,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.checkout-ref }}
+          ref: ${{ inputs.ref }}
 
       - name: Check End-of-Line Sequences
         uses: Arthri/check-eol-composite@v1
