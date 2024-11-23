@@ -24,10 +24,13 @@ jobs:
     timeout-minutes: 1
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.ref }}
+      - name: Setup Repository
+        env:
+          REF: ${{ inputs.ref || github.ref }}
+        run: |
+          git init
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
+          git fetch --depth 1 origin "$REF"
 
       - name: Check End-of-Line Sequences
         env:
@@ -46,6 +49,6 @@ jobs:
               echo 'Unable to match '"$line"
               exit_code=1
             fi
-          done < <(git ls-files --eol)
+          done < <(git ls-files --with-tree=FETCH_HEAD --eol)
 
           exit $exit_code

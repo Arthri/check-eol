@@ -54,7 +54,7 @@ jobs:
 ```
 
 ### Checkout Reference
-`$GITHUB_SHA` is used by [`actions/checkout@v4`](https://github.com/actions/checkout/tree/v4) as the default commitish to checkout. The following example sets `dev` as the ref to checkout.
+The reusable workflow, by default, checkouts the ref of the branch or tag that triggered the workflow. For more information about the default ref, see `github.ref` in [Accessing contextual information about workflow runs](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context). The following example demonstrates how to change the ref and sets the ref to `dev`,
 ```yml
 jobs:
   check-eol:
