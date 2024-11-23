@@ -5,7 +5,7 @@ on:
   workflow_call:
     inputs:
       ref:
-        description: Specifies the commitish to checkout. Defaults to $GITHUB_SHA. For more information, see <https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows>.
+        description: Specifies the commitish to checkout. Defaults to $GITHUB_SHA. For more information, see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows.
         required: false
         type: string
       default-eol:
