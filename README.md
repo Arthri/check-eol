@@ -7,7 +7,6 @@ A reusable workflow and composite action for linting end-of-line sequences.
 Add a new workflow under `.github/workflows/` with the following contents,
 ```yml
 name: Check End-of-Line Sequences
-run-name: Check End-of-Line Sequences
 
 on:
   push:
