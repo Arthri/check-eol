@@ -28,7 +28,7 @@ jobs:
         env:
           REF: ${{ inputs.ref || github.ref }}
         run: |
-          git init
+          git -c init.defaultBranch=default-branch init
           git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
           git fetch --depth 1 origin "$REF"
 
