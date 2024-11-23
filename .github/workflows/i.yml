@@ -40,7 +40,7 @@ jobs:
           while IFS= read line; do
             if [[ $line =~ ^i/([^ ]*)\ +w/[^\ ]*\ +attr/[^$'\t']+$'\t'(.+)$ ]] ; then
               index_eol=${BASH_REMATCH[1]}
-              if [ "$index_eol" != $DEFAULT_EOL ] && [ "$index_eol" != 'none' ] && [ "$index_eol" != '-text' ] && [ "$index_eol" != '' ] ; then
+              if [[ $index_eol != $DEFAULT_EOL && $index_eol != 'none' && $index_eol != '-text' && -n $index_eol ]] ; then
                 echo "${BASH_REMATCH[2]}:"$'\t'"End-of-line sequence in index($index_eol) must be LF."
                 exit_code=1
               fi
