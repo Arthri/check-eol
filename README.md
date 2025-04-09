@@ -17,6 +17,8 @@ on:
 jobs:
   check-eol:
     uses: Arthri/check-eol/.github/workflows/i.yml@v2
+    permissions:
+      contents: read
 ```
 
 ## Composite Action

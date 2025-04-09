@@ -20,6 +20,8 @@ defaults:
 jobs:
   check-eol:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
     timeout-minutes: 1
 
     steps:
