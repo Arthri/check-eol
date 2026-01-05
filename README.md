@@ -27,7 +27,7 @@ Add the following step to the desired jobs.
 jobs:
   job:
     - name: Check Line Endings
-      uses: Arthri/check-eol-composite@v2
+      uses: Arthri/check-eol@v2
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ And the following demonstrates the equivalent for composite actions.
 jobs:
   job:
     - name: Check Line Endings
-      uses: Arthri/check-eol-composite@v2
+      uses: Arthri/check-eol@v2
       with:
         default-eol: crlf
 ```
