@@ -11,6 +11,7 @@ inputs:
 runs:
   using: composite
   steps:
+    # NOTE: If this script is updated, then /.github/workflows/i.yml must also be updated
     - name: Check Line Endings
       shell: bash
       env:

@@ -30,6 +30,7 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
 
+      # NOTE: If this script is updated, then /action.yml must also be updated
       - name: Check Line Endings
         env:
           DEFAULT_EOL: ${{ inputs.default-eol }}
